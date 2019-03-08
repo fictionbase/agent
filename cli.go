@@ -1,7 +1,6 @@
-package main
+package agent
 
 import (
-	"fmt"
 	"os"
 	"os/signal"
 	"syscall"
@@ -13,7 +12,8 @@ type fictionBase interface {
 	Run()
 }
 
-func main() {
+// RunCLI exec Cli
+func RunCLI(i []interface{}) int {
 	// @TODO fictionBase return by config want Run
 	var fictionBase []fbresource.FictionBase
 	resource := fbresource.FictionBase{}
@@ -29,18 +29,5 @@ func main() {
 	case ch := <-signalCh:
 		catchSig(ch)
 	}
-}
-
-func catchSig(sig os.Signal) {
-	// @TODO change print zap
-	switch sig {
-	case syscall.SIGHUP:
-		fmt.Println("SIGHUP Happend! fictionbase stop", sig)
-	case syscall.SIGTERM:
-		fmt.Println("SIGTERM Happend! fictionbase stop", sig)
-	case os.Interrupt:
-		fmt.Println("os.Interrupt Happend! fictionbase stop", sig)
-	default:
-		fmt.Println("singal Happend! fictionbase stop", sig)
-	}
+	return 0
 }
