@@ -1,21 +1,23 @@
 package agent
 
 import (
-	"fmt"
 	"os"
 	"syscall"
+
+	"go.uber.org/zap"
 )
 
 func catchSig(sig os.Signal) {
-	// @TODO change print zap
+
+	logger, _ := zap.NewProduction()
 	switch sig {
 	case syscall.SIGHUP:
-		fmt.Println("SIGHUP Happend! fictionbase stop", sig)
+		logger.Info("SIGHUP Happend! fictionbase stop")
 	case syscall.SIGTERM:
-		fmt.Println("SIGTERM Happend! fictionbase stop", sig)
+		logger.Info("SIGTERM Happend! fictionbase stop")
 	case os.Interrupt:
-		fmt.Println("os.Interrupt Happend! fictionbase stop", sig)
+		logger.Info("os.Interrupt Happend! fictionbase stop")
 	default:
-		fmt.Println("singal Happend! fictionbase stop", sig)
+		logger.Info("signal Happend! fictionbase stop")
 	}
 }
