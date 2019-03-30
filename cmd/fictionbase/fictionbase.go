@@ -6,11 +6,7 @@ import (
 	"github.com/fictionbase/agent"
 )
 
-var (
-	version = "dev"
-	commit  = "none"
-	date    = "unknown"
-)
+//@TODO Add Run Info
 
 func main() {
 	i := []interface{}{}
