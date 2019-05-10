@@ -11,8 +11,9 @@ import (
 
 // RunCLI exec Cli
 func RunCLI(i []interface{}) int {
-	fbresourceRun()
-	fbprocessRun()
+	// @TODO Exec Config Set
+	go fbresourceRun()
+	go fbprocessRun()
 	// signal Catch
 	signalCh := make(chan os.Signal)
 	signal.Notify(signalCh, syscall.SIGHUP, syscall.SIGTERM, os.Interrupt)

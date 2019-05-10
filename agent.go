@@ -4,13 +4,13 @@ import (
 	"os"
 	"syscall"
 
-	"go.uber.org/zap"
+	"github.com/fictionbase/fictionbase"
 )
 
 func catchSig(sig os.Signal) int {
 
-	// @TODO set config from fictionbase.yml
-	logger, _ := zap.NewProduction()
+	logger := fictionbase.GetLogger()
+
 	switch sig {
 	case syscall.SIGHUP:
 		logger.Info("SIGHUP Happend! fictionbase stop")
