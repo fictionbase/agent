@@ -13,8 +13,7 @@ jobs:
       - checkout
       - restore_cache:
           key: go-{{ checksum "go.mod" }}
-      - run: go build
-      - run: go get -u golang.org/x/lint/golint github.com/haya14busa/goverage
+      - run: go get -u golang.org/x/lint/golint github.com/haya14busa/goverage github.com/fictionbase/fictionbase
       - save_cache:
           key: go-{{ checksum "go.mod" }}
           paths:
